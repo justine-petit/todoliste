@@ -12,20 +12,22 @@ addCatBtn.addEventListener('click', (event) => {
 	localStorage.setItem('catObject', JSON.stringify(catObject))
 	createAccordion = document.createElement('div')
 	catContainer.appendChild(createAccordion).innerHTML = `
-    <div class="row border border-1 border-primary mb-5">
-        <div class="col-1"></div>
-        <div class="col-8 catContainer" id="catContainer">
-            <div class="accordion accordion-flush w-80 m-auto" id=${'accordionCat' + id}>
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="flush-headingOne">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">${catName.value}</button>
-                    </h2>
-                    <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                <div class="accordion-body d-flex flex-column">
-                <div class="modaleee d-flex flex-row justify-content-between mb-2">
-                </div>
-        <div class="col-1 d-flex align-items-center justify-content-center"><i id="testBtn" class="fa-solid fa-pen"></i></div>
-        <div class="col-1 d-flex align-items-center justify-content-center"><i class="fa-solid fa-trash-can"></i></div>
-        <div class="col-1"></div>
-    </div>`
+    <div class="row border border-1 border-primary mb-5 d-flex">
+	<div class="col-1"></div>
+	<div class="col-8 catContainer d-flex" id="${'catContainer' + id}">
+		<div class="accordion accordion-flush m-auto" id=${'accordionCat' + id}>
+		<div class="accordion-item">
+			<h2 class="accordion-header" id="${'flush-headingOne' + id}">
+				<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">${catName.value}</button>
+			</h2>
+			<div id="${'flush-collapseOne' + id}" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+				<div class="eaccordion-body d-flex flx-column"></div>
+			</div>
+		</div>
+	</div>
+	<div class="modaleee d-flex flex-row justify-content-between mb-2"></div>
+	<div class="col-1 d-flex align-items-center justify-content-center"><i id="${'changeCatNameBtn' + id}" class="fa-solid fa-pen"></i></div>
+	<div class="col-1 d-flex align-items-center justify-content-center"><i id="${'removeCatBtn' + id}" class="fa-solid fa-trash-can"></i></div>
+	<div class="col-1"></div>
+</div>`
 })
