@@ -9,7 +9,7 @@ addCatBtn.addEventListener('click', (event) => {
 	event.preventDefault()
 	id++
 	let catObject = { name: `${catName.value}` }
-	localStorage.setItem('catObject', JSON.stringify(catObject))
+	localStorage.setItem('catObject' + id, JSON.stringify(catObject))
 	createAccordion = document.createElement('div')
 
 	catContainer.appendChild(createAccordion).innerHTML = `
@@ -22,7 +22,7 @@ addCatBtn.addEventListener('click', (event) => {
 				<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#${'flush-collapseOne' + id}" aria-expanded="false" aria-controls="flush-collapseOne">${catName.value}</button>
 			</h2>
 			<div id="${'flush-collapseOne' + id}" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#${'accordionCat' + id}">
-				<div class="eaccordion-body d-flex flx-column">blabla
+				<div class="eaccordion-body d-flex flx-column">
                 </div>
 			</div>
 		</div>
@@ -32,3 +32,9 @@ addCatBtn.addEventListener('click', (event) => {
 	<div class="col-1"></div>
     </div>`
 })
+
+//test
+let temp = JSON.parse(localStorage.getItem('catObject1'))
+console.log(temp.name)
+temp.name = 'modified'
+console.log(temp.name)
