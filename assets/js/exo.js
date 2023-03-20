@@ -1,6 +1,7 @@
 const addCatBtn = document.getElementById('addCatBtn')
 const catName = document.getElementById('catName')
 const catContainer = document.getElementById('container')
+const catTitle = document.getElementById
 // catContainer.appendChild(addCatBtn).innerHTML = `<i class="fa-solid fa-circle-plus"></i>` // Ajoute la balise <button> à la balise <body>
 
 let id = 0
@@ -19,7 +20,7 @@ addCatBtn.addEventListener('click', (event) => {
 		<div class="accordion accordion-flush m-auto" id=${'accordionCat' + id}>
 		<div class="accordion-item">
 			<h2 class="accordion-header" id="${'flush-headingOne' + id}">
-				<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#${'flush-collapseOne' + id}" aria-expanded="false" aria-controls="flush-collapseOne">${catName.value}</button>
+				<button id="${'catBtn' + id}" class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#${'flush-collapseOne' + id}" aria-expanded="false" aria-controls="flush-collapseOne">${catName.value}</button>
 			</h2>
 			<div id="${'flush-collapseOne' + id}" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#${'accordionCat' + id}">
 				<div class="eaccordion-body d-flex flx-column">
@@ -38,3 +39,7 @@ let temp = JSON.parse(localStorage.getItem('catObject1'))
 console.log(temp.name)
 temp.name = 'modified'
 console.log(temp.name)
+//fonciton de modification
+const modifyCat = () => {
+	const newCatName = prompt('Nouveau nom')
+}
