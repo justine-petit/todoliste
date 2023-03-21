@@ -82,7 +82,6 @@ const updateTask = (taskIndex, taskNewName) => {
 	const tasks = JSON.parse(localStorage.getItem('tasks'))
 	tasks[taskIndex].name = taskNewName
 	localStorage.setItem('tasks', JSON.stringify(tasks))
-
 	const taskLi = taskUl.children[taskIndex]
 	const taskDiv = taskLi.querySelector('.taskDiv')
 	const paragraph = taskDiv.querySelector('p')

@@ -44,8 +44,31 @@ input {
 	padding-left: 2em;
 	border: 3px solid black;
 	border-right: none;
-	transition: 1s;
 	font-size: 1.1em;
+}
+@media screen and (max-width: 768px) {
+	.addTaskForm {
+		justify-content: center !important;
+		margin: auto;
+	}
+	input {
+		margin: 0;
+		font-size: 0.8em;
+	}
+	button {
+		margin: 0;
+		padding: 0;
+	}
+	ul {
+		padding: 2vh;
+		margin: 2vh;
+	}
+	.container {
+		margin-top: 4vh;
+	}
+	h1 {
+		margin-bottom: 3vh;
+	}
 }
 
 button {
@@ -74,8 +97,6 @@ li {
 	list-style: none;
 }
 li div {
-	/* justify-content: space-between; */
-	/* width: 100%; */
 	display: flex !important;
 	align-items: center;
 	font-size: 1.2em;
@@ -159,10 +180,4 @@ p:hover {
 }
 .darkButton:hover {
 	background-color: #0d3431;
-}
-.darkdark {
-	background-color: #000;
-	color: white;
-	transition: 0.6s;
-	box-shadow: 0;
 }
