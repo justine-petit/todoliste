@@ -3,6 +3,7 @@ const container = document.getElementById('container')
 const taskUl = document.getElementById('taskUl')
 const taskInput = document.getElementById('taskName')
 const addTaskBtn = document.getElementById('addTaskBtn')
+const dark = document.querySelector('.fa-moon-o')
 //Initialisation du tableau tasks avant de le pousser dans localStorage
 let tasks
 localStorage.getItem('tasks') != '' ? (tasks = JSON.parse(localStorage.getItem('tasks'))) : (tasks = [])
@@ -115,4 +116,16 @@ window.onload = () => {
 
 addTaskBtn.addEventListener('click', () => {
 	addTask()
+})
+
+//mode sombre
+dark.addEventListener('click', () => {
+	const body = document.body
+	body.classList.toggle('darkBody')
+	const wholeContainer = document.querySelector('.container')
+	wholeContainer.classList.toggle('darkContainer')
+	taskInput.classList.toggle('darkInput')
+	const h1 = document.querySelector('h1')
+	h1.classList.toggle('darkh1')
+	addTaskBtn.classList.toggle('darkButton')
 })

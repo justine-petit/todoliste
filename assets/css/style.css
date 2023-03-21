@@ -114,3 +114,55 @@ p:hover {
 	color: red;
 	opacity: 0.4;
 }
+
+/* ================== DARK MODE ===================  */
+.dark {
+	font-size: 1.4em;
+	position: absolute;
+	top: 5vh;
+	right: 6vw;
+	display: flex;
+	justify-content: end;
+	margin: 2vw;
+	padding: 2vw;
+	border-radius: 10vw;
+	background-color: #fff;
+	box-shadow: rgba(0, 0, 0, 0.16) 0px 19px 38px, rgba(0, 0, 0, 0.08) 0px 15px 12px;
+	transition: 0.6s;
+}
+.dark:hover {
+	filter: invert(1);
+	transition: 0.6s;
+	box-shadow: 0;
+}
+.darkBody {
+	background-color: rgb(33, 33, 40);
+	transition: 1s;
+}
+.darkContainer {
+	background-color: rgb(40, 40, 47);
+	color: white;
+	transition: 1s;
+}
+.darkInput {
+	background-color: rgb(50, 50, 57);
+	color: white;
+	transition: 1s;
+}
+.darkInput::placeholder {
+	color: white;
+	transition: 1s;
+}
+.darkh1 {
+	background-color: #0d3431;
+	transition: 1s;
+}
+.darkButton:hover {
+	background-color: #0d3431;
+}
+.darkdark {
+	background-color: #000;
+	color: white;
+	transition: 0.6s;
+	box-shadow: 0;
+}
