@@ -4,7 +4,7 @@ const taskUl = document.getElementById('taskUl')
 const taskInput = document.getElementById('taskName')
 const addTaskBtn = document.getElementById('addTaskBtn')
 const dark = document.querySelector('.fa-moon-o')
-// Initialisation du tableau tasks avant de le pousser dans localStorage
+// Initialisation du tableau tasks avant de le pousser dans localStorage (ou de recupérer son contenu précédent)
 let tasks
 localStorage.getItem('tasks') != '' ? (tasks = JSON.parse(localStorage.getItem('tasks'))) : (tasks = [])
 
@@ -18,9 +18,9 @@ const addTask = () => {
 		newTaskDiv.classList.add('taskDiv')
 		const paragraph = document.createElement('p')
 		const taskModBtn = document.createElement('i')
-		taskModBtn.classList.add('fa-solid', 'fa-pen', 'updateTaskBtn')
+		taskModBtn.classList.add('fa-solid', 'fa-pen')
 		const taskRemoveBtn = document.createElement('i')
-		taskRemoveBtn.classList.add('fa-solid', 'fa-trash-can', 'removeTaskBtn')
+		taskRemoveBtn.classList.add('fa-solid', 'fa-trash-can')
 		paragraph.innerText = taskInput.value
 		// Ecouteur de pen de la nouvelle tâche
 		taskModBtn.addEventListener('click', () => {
@@ -32,10 +32,24 @@ const addTask = () => {
 				localStorage.setItem('tasks', JSON.stringify(tasks))
 			}
 		})
-		// Ecouteur de trash-can de la nouvelle tâche
+		// Ecouteur de trash-can de la nouvelle tâche (plus d'infos ligne 82)
 		taskRemoveBtn.addEventListener('click', () => {
 			removeTask()
 			displayTasks()
+		})
+		// Ecouteur de paragraph
+		paragraph.addEventListener('click', () => {
+			if (paragraph.classList.contains('checked')) {
+				paragraph.classList.remove('checked')
+				const tasks = JSON.parse(localStorage.getItem('tasks'))
+				tasks.checked = 'no'
+				localStorage.setItem('tasks', JSON.stringify(tasks))
+			} else {
+				paragraph.classList.add('checked')
+				const tasks = JSON.parse(localStorage.getItem('tasks'))
+				tasks.checked = 'yes'
+				localStorage.setItem('tasks', JSON.stringify(tasks))
+			}
 		})
 		// Ajout dans localStorage
 		let task = { name: `${taskInput.value}`, checked: 'no', archived: 'no' }
@@ -67,6 +81,16 @@ const displayTasks = () => {
 						</div>
 					<div>
 				</li>`
+		// =============================
+		// ======== A CORRIGER =========
+		// =============================
+
+		if (task[i].checked == 'yes') {
+			task.classList.add('checked')
+		}
+		// =============================
+		// ======== A CORRIGER =========
+		// =============================
 	}
 	taskUl.innerHTML = html
 	// Ecouteur de pen des tâches déjà présentes
