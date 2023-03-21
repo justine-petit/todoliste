@@ -109,3 +109,8 @@ p:hover {
 .icons {
 	justify-content: end;
 }
+.checked {
+	text-decoration: line-through;
+	color: red;
+	opacity: 0.4;
+}

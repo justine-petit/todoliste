@@ -5,13 +5,6 @@ const taskInput = document.getElementById('taskName')
 const addTaskBtn = document.getElementById('addTaskBtn')
 //Initialisation du tableau tasks avant de le pousser dans localStorage
 let tasks
-// if (localStorage.getItem('tasks') !== '') {
-// 	tasks = JSON.parse(localStorage.getItem('tasks'))
-// 	console.log(tasks)
-// } else {
-// 	tasks = []
-// }
-
 localStorage.getItem('tasks') != '' ? (tasks = JSON.parse(localStorage.getItem('tasks'))) : (tasks = [])
 
 //Fonction d'ajout de tâche
@@ -95,8 +88,29 @@ const updateTask = (taskIndex, taskNewName) => {
 	paragraph.innerText = taskNewName
 }
 
+//fonction de check de tâche
+const markAsDone = () => {
+	const paragraphs = document.querySelectorAll('p')
+	paragraphs.forEach((par, index) => {
+		par.addEventListener('click', () => {
+			if (par.classList.contains('checked')) {
+				par.classList.remove('checked')
+				const tasks = JSON.parse(localStorage.getItem('tasks'))
+				tasks[index].checked = 'no'
+				localStorage.setItem('tasks', JSON.stringify(tasks))
+			} else {
+				par.classList.add('checked')
+				const tasks = JSON.parse(localStorage.getItem('tasks'))
+				tasks[index].checked = 'yes'
+				localStorage.setItem('tasks', JSON.stringify(tasks))
+			}
+		})
+	})
+}
+
 window.onload = () => {
 	displayTasks()
+	markAsDone()
 }
 
 addTaskBtn.addEventListener('click', () => {
