@@ -3,13 +3,16 @@ const container = document.getElementById('container')
 const taskUl = document.getElementById('taskUl')
 const taskInput = document.getElementById('taskName')
 const addTaskBtn = document.getElementById('addTaskBtn')
-//Boutons
-const taskModBtn = document.createElement('i')
-taskModBtn.classList.add('fa-solid', 'fa-pen', 'updateTaskBtn')
-const taskRemoveBtn = document.createElement('i')
-taskRemoveBtn.classList.add('fa-solid', 'fa-trash-can', 'removeTaskBtn')
 //Initialisation du tableau tasks avant de le pousser dans localStorage
-let tasks = []
+let tasks
+// if (localStorage.getItem('tasks') !== '') {
+// 	tasks = JSON.parse(localStorage.getItem('tasks'))
+// 	console.log(tasks)
+// } else {
+// 	tasks = []
+// }
+
+localStorage.getItem('tasks') != '' ? (tasks = JSON.parse(localStorage.getItem('tasks'))) : (tasks = [])
 
 //Fonction d'ajout de tâche
 const addTask = () => {
@@ -20,12 +23,19 @@ const addTask = () => {
 		const newTaskDiv = document.createElement('div')
 		newTaskDiv.classList.add('taskDiv')
 		const paragraph = document.createElement('p')
+		const taskModBtn = document.createElement('i')
+		taskModBtn.classList.add('fa-solid', 'fa-pen', 'updateTaskBtn')
+		const taskRemoveBtn = document.createElement('i')
+		taskRemoveBtn.classList.add('fa-solid', 'fa-trash-can', 'removeTaskBtn')
 		paragraph.innerText = taskInput.value
 		//écouteur du pen
 		taskModBtn.addEventListener('click', () => {
 			const taskNewName = prompt('Nouveau nom de la tâche :')
 			if (taskNewName != '') {
 				paragraph.innerText = taskNewName
+				let task = { name: `${taskNewName}`, checked: 'no', archived: 'no' }
+				tasks.push(task)
+				localStorage.setItem('tasks', JSON.stringify(tasks))
 			}
 		})
 		//ajout dans localStorage
@@ -49,8 +59,7 @@ const displayTasks = () => {
 	let html = ''
 	for (let i = 0; i < tasks.length; i++) {
 		let task = tasks[i].name
-		console.log(task)
-		html += `<li class="taskDiv">
+		html += `<li class="taskLi">
 					<div class="taskDiv">
 						<p>${task}</p>
 						<div class="icons">

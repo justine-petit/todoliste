@@ -10,7 +10,7 @@ body {
 	background-color: #fff;
 	border-radius: 10px;
 	padding-top: 0;
-	box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+	box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
 }
 
 h1 {
