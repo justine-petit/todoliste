@@ -24,7 +24,7 @@ const addTask = () => {
 		//écouteur du pen
 		taskModBtn.addEventListener('click', () => {
 			const taskNewName = prompt('Nouveau nom de la tâche :')
-			if (taskNewName !== '') {
+			if (taskNewName != '') {
 				paragraph.innerText = taskNewName
 			}
 		})
@@ -53,8 +53,10 @@ const displayTasks = () => {
 		html += `<li class="taskDiv">
 					<div class="taskDiv">
 						<p>${task}</p>
-						<i class="fa-solid fa-pen"></i>
-						<i class="fa-solid fa-trash-can"></i>
+						<div class="icons">
+							<i class="fa-solid fa-pen"></i>
+							<i class="fa-solid fa-trash-can"></i>
+						</div>
 					<div>
 				</li>`
 	}
