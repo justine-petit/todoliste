@@ -22,35 +22,6 @@ const addTask = () => {
 		const taskRemoveBtn = document.createElement('i')
 		taskRemoveBtn.classList.add('fa-solid', 'fa-trash-can')
 		paragraph.innerText = taskInput.value
-		// Ecouteur de pen de la nouvelle tâche
-		taskModBtn.addEventListener('click', () => {
-			const taskNewName = prompt('Nouveau nom de la tâche :')
-			if (taskNewName != '') {
-				paragraph.innerText = taskNewName
-				let task = { name: `${taskNewName}`, checked: 'no', archived: 'no' }
-				tasks.push(task)
-				localStorage.setItem('tasks', JSON.stringify(tasks))
-			}
-		})
-		// Ecouteur de trash-can de la nouvelle tâche (plus d'infos ligne 82)
-		taskRemoveBtn.addEventListener('click', () => {
-			removeTask()
-			displayTasks()
-		})
-		// Ecouteur de paragraph
-		paragraph.addEventListener('click', () => {
-			if (paragraph.classList.contains('checked')) {
-				paragraph.classList.remove('checked')
-				const tasks = JSON.parse(localStorage.getItem('tasks'))
-				tasks.checked = 'no'
-				localStorage.setItem('tasks', JSON.stringify(tasks))
-			} else {
-				paragraph.classList.add('checked')
-				const tasks = JSON.parse(localStorage.getItem('tasks'))
-				tasks.checked = 'yes'
-				localStorage.setItem('tasks', JSON.stringify(tasks))
-			}
-		})
 		// Ajout dans localStorage
 		let task = { name: `${taskInput.value}`, checked: 'no', archived: 'no' }
 		tasks.push(task)
@@ -61,8 +32,10 @@ const addTask = () => {
 		newTaskDiv.appendChild(taskRemoveBtn)
 		newTaskLi.appendChild(newTaskDiv)
 		taskUl.appendChild(newTaskLi)
+		displayTasks()
 		// Vidange input
 		taskInput.value = ''
+		displayTasks()
 	}
 }
 
@@ -72,9 +45,15 @@ const displayTasks = () => {
 	let html = ''
 	for (let i = 0; i < tasks.length; i++) {
 		let task = tasks[i].name
+		let isChecked
+		if (tasks[i].checked == 'yes') {
+			isChecked = 'checked'
+		} else {
+			isChecked = ''
+		}
 		html += `<li class="taskLi">
 					<div class="taskDiv">
-						<p>${task}</p>
+						<p class="${isChecked}">${task}</p>
 						<div class="icons">
 							<i class="fa-solid fa-pen"></i>
 							<i class="fa-solid fa-trash-can"></i>
@@ -82,17 +61,8 @@ const displayTasks = () => {
 					<div>
 				</li>`
 		// =============================
-		// ======== A CORRIGER =========
-		// =============================
-
-		if (task[i].checked == 'yes') {
-			task.classList.add('checked')
-		}
-		// =============================
-		// ======== A CORRIGER =========
-		// =============================
+		taskUl.innerHTML = html
 	}
-	taskUl.innerHTML = html
 	// Ecouteur de pen des tâches déjà présentes
 	const pens = document.querySelectorAll('.fa-pen')
 	pens.forEach((pen, index) => {
@@ -134,7 +104,7 @@ const updateTask = (taskIndex, taskNewName) => {
 // Fonction de suppression de tâches
 const removeTask = (taskIndex) => {
 	// Etape 1 : on récupère le JSON du localStorage et on le range dans la const tasks
-	const tasks = JSON.parse(localStorage.getItem('tasks'))
+	// const tasks = JSON.parse(localStorage.getItem('tasks'))
 	// Etape 2 : on lui splice la face pile au bon index, le second paramêtre étant le nombre d'élément à supprimer, ici 1 seul.
 	tasks.splice(taskIndex, 1)
 	// Etape 3 : une fois l'objet splicé, on lui dit "retourne d'où tu viens ( dans le localStorage) !"
