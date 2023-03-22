@@ -32,7 +32,6 @@ const addTask = () => {
 		newTaskDiv.appendChild(taskRemoveBtn)
 		newTaskLi.appendChild(newTaskDiv)
 		taskUl.appendChild(newTaskLi)
-		displayTasks()
 		// Vidange input
 		taskInput.value = ''
 		displayTasks()
@@ -109,6 +108,8 @@ const removeTask = (taskIndex) => {
 	tasks.splice(taskIndex, 1)
 	// Etape 3 : une fois l'objet splicé, on lui dit "retourne d'où tu viens ( dans le localStorage) !"
 	localStorage.setItem('tasks', JSON.stringify(tasks))
+	const taskLi = taskUl.children[taskIndex]
+	taskUl.removeChild(taskLi)
 }
 
 // Fonction de check de tâche
