@@ -46,6 +46,16 @@ input {
 	border-right: none;
 	font-size: 1.1em;
 }
+
+.fuctionsUpToCome{
+	position: absolute;
+	top: 15vh;
+	left: 12vw;
+	font-size: 1.4em;
+	opacity: 120%;
+	color: #ffffff;
+
+}
 @media screen and (max-width: 768px) {
 	.addTaskForm {
 		justify-content: center !important;
